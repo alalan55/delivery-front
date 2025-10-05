@@ -1,7 +1,9 @@
 <template>
   <div>
     <NuxtLayout>
-      <NuxtPage />
+    
+        <NuxtPage />
+    
     </NuxtLayout>
   </div>
 </template>
@@ -9,9 +11,12 @@
 <script setup>
 // Configuração global da aplicação
 useHead({
-  titleTemplate: '%s - DeliveryApp',
+  titleTemplate: "%s - DeliveryApp",
   meta: [
-    { name: 'description', content: 'Sistema completo de delivery de alimentos' }
-  ]
-})
+    {
+      name: "description",
+      content: "Sistema completo de delivery de alimentos",
+    },
+  ],
+});
 </script>

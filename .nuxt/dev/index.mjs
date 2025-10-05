@@ -870,7 +870,9 @@ const _inlineRuntimeConfig = {
       }
     }
   },
-  "public": {},
+  "public": {
+    "apiUrl": "http://localhost:8080"
+  },
   "icon": {
     "serverKnownCssClasses": []
   }

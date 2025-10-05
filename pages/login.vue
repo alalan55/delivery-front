@@ -123,11 +123,15 @@
                   Tipo de conta
                 </label>
 
-                <AccountTypeToggle
-                  v-model="activeTab"
+                <SharedButtonToggle
+                  v-model="form.userType"
                   :options="[
-                    { label: 'Cliente', value: 'login', position: 'left' },
-                    { label: 'Proprietário', value: 'register', position: 'right' }
+                    { label: 'Cliente', value: 'CUSTOMER', position: 'left' },
+                    {
+                      label: 'Proprietário',
+                      value: 'STORE_OWNER',
+                      position: 'right',
+                    },
                   ]"
                 />
               </div>
@@ -159,6 +163,47 @@
                 </label>
                 <UInput
                   v-model="form.passwordConfirmation"
+                  icon="heroicons:lock-closed"
+                  size="md"
+                  variant="outline"
+                  color="orange"
+                  type="password"
+                  placeholder="Sua senha"
+                />
+              </div>
+            </section>
+          </template>
+
+          <template v-else>
+            <section class="flex flex-col gap-4">
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Email
+                </label>
+
+                <UInput
+                  v-model="formLogin.email"
+                  icon="heroicons:envelope"
+                  size="md"
+                  variant="outline"
+                  color="orange"
+                  type="email"
+                  placeholder="seu@email.com"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="password"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Senha
+                </label>
+                <UInput
+                  v-model="formLogin.password"
                   icon="heroicons:lock-closed"
                   size="md"
                   variant="outline"
@@ -208,6 +253,9 @@ definePageMeta({
   layout: false,
 });
 
+const http = useApi();
+const toast = useToast();
+
 const { login, isLoggedIn, isOwner } = useAppState();
 
 const activeTab = ref("login");
@@ -215,6 +263,15 @@ const loading = ref(false);
 const error = ref("");
 
 const form = reactive({
+  email: "",
+  password: "",
+  name: "",
+  phone: "",
+  userType: "CUSTOMER",
+  passwordConfirmation: "",
+});
+
+const formLogin = reactive({
   email: "",
   password: "",
 });
@@ -231,6 +288,13 @@ watchEffect(() => {
 });
 
 const handleSubmit = async () => {
+  if (activeTab.value === "login") {
+    await loginUser();
+  } else {
+    await register();
+  }
+};
+const loginUser = async () => {
   loading.value = true;
   error.value = "";
 
@@ -244,6 +308,45 @@ const handleSubmit = async () => {
     }
   } catch (err) {
     error.value = "Erro ao fazer login";
+  } finally {
+    loading.value = false;
+  }
+};
+
+const register = async () => {
+  loading.value = true;
+  error.value = "";
+
+  if (form.password !== form.passwordConfirmation) {
+    error.value = "As senhas não coincidem";
+    loading.value = false;
+    toast.add({
+      title: "Erro",
+      description: "As senhas não coincidem",
+      icon: "heroicons:exclamation-circle",
+      color: "red",
+    });
+    return;
+  }
+
+  try {
+    await http.post("/users", {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      userType: form.userType,
+      password: form.password,
+    });
+
+  toast.add({
+      title: "Sucesso",
+      description: "Usuário registrado com sucesso! Faça login.",
+      icon: "heroicons:check-circle",
+      color: "green",
+    });
+    activeTab.value = "login";
+  } catch (err) {
+    error.value = "Erro ao registrar usuário";
   } finally {
     loading.value = false;
   }

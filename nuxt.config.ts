@@ -14,5 +14,10 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Sistema completo de delivery de alimentos' }
       ]
     }
-  }
+  },
+    runtimeConfig: {
+    public: {
+      apiUrl: process.env.NUXT_APP_API_URL || "http://localhost:8080/",
+    },
+  },
 })
