@@ -13,7 +13,9 @@
           />
         </div>
         <h2 class="mt-6 text-3xl font-extrabold text-gray-900">MenuJá</h2>
-        <p class="mt-2 text-sm text-gray-600">Seu sistema completo de delivery</p>
+        <p class="mt-2 text-sm text-gray-600">
+          Seu sistema completo de delivery
+        </p>
       </div>
 
       <div class="bg-white rounded-lg shadow-md p-8">
@@ -42,10 +44,11 @@
           </button>
         </div>
 
-        <form @submit.prevent="handleSubmit" class="space-y-6">
-          <h3 class="text-lg font-medium text-gray-900 mb-4">
+        <form @submit.prevent="handleSubmit">
+          <span class="text-lg font-medium text-gray-900">
             {{ activeTab === "login" ? "Fazer Login" : "Criar Conta" }}
-          </h3>
+          </span>
+
           <p class="text-sm text-gray-600 mb-6">
             {{
               activeTab === "login"
@@ -54,39 +57,118 @@
             }}
           </p>
 
-          <div>
-            <label
-              for="email"
-              class="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              v-model="form.email"
-              type="email"
-              required
-              class="input-field"
-              placeholder="seu@email.com"
-            />
-          </div>
+          <template v-if="activeTab === 'register'">
+            <section class="flex flex-col gap-4">
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Nome
+                </label>
 
-          <div>
-            <label
-              for="password"
-              class="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Senha
-            </label>
-            <input
-              id="password"
-              v-model="form.password"
-              type="password"
-              required
-              class="input-field"
-              placeholder="Sua senha"
-            />
-          </div>
+                <UInput
+                  v-model="form.name"
+                  icon="heroicons:user"
+                  size="md"
+                  variant="outline"
+                  color="orange"
+                  placeholder="Seu nome"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Email
+                </label>
+
+                <UInput
+                  v-model="form.email"
+                  icon="heroicons:envelope"
+                  size="md"
+                  variant="outline"
+                  color="orange"
+                  type="email"
+                  placeholder="seu@email.com"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Telefone
+                </label>
+
+                <UInput
+                  v-model="form.phone"
+                  icon="heroicons:phone"
+                  size="md"
+                  variant="outline"
+                  color="orange"
+                  type="tel"
+                  placeholder="(99) 99999-9999"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Tipo de conta
+                </label>
+
+                <AccountTypeToggle
+                  v-model="activeTab"
+                  :options="[
+                    { label: 'Cliente', value: 'login', position: 'left' },
+                    { label: 'Proprietário', value: 'register', position: 'right' }
+                  ]"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="password"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Senha
+                </label>
+                <UInput
+                  v-model="form.password"
+                  icon="heroicons:lock-closed"
+                  size="md"
+                  variant="outline"
+                  color="orange"
+                  type="password"
+                  placeholder="Sua senha"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="password"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Confirmar Senha
+                </label>
+                <UInput
+                  v-model="form.passwordConfirmation"
+                  icon="heroicons:lock-closed"
+                  size="md"
+                  variant="outline"
+                  color="orange"
+                  type="password"
+                  placeholder="Sua senha"
+                />
+              </div>
+            </section>
+          </template>
 
           <div v-if="error" class="text-red-600 text-sm">
             {{ error }}
@@ -95,7 +177,7 @@
           <button
             type="submit"
             :disabled="loading"
-            class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+            class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed mt-4"
           >
             <Icon
               v-if="loading"

@@ -14,7 +14,8 @@ type HydrationStrategies = {
 type LazyComponent<T> = (T & DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }>)
 
 interface _GlobalComponents {
-      'UAccordion': typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']
+      'AccountTypeToggle': typeof import("../../components/AccountTypeToggle.vue")['default']
+    'UAccordion': typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']
     'UAlert': typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Alert.vue")['default']
     'UAvatar': typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Avatar.vue")['default']
     'UAvatarGroup': typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/AvatarGroup")['default']
@@ -91,7 +92,8 @@ interface _GlobalComponents {
     'UModals': typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']
     'USlideovers': typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']
     'NuxtRouteAnnouncer': typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']
-      'LazyUAccordion': LazyComponent<typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']>
+      'LazyAccountTypeToggle': LazyComponent<typeof import("../../components/AccountTypeToggle.vue")['default']>
+    'LazyUAccordion': LazyComponent<typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']>
     'LazyUAlert': LazyComponent<typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Alert.vue")['default']>
     'LazyUAvatar': LazyComponent<typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Avatar.vue")['default']>
     'LazyUAvatarGroup': LazyComponent<typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/AvatarGroup")['default']>
