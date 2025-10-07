@@ -18,6 +18,7 @@ interface _GlobalComponents {
     'ConsumerFloatingCart': typeof import("../../components/consumer/floatingCart.vue")['default']
     'ConsumerProductCart': typeof import("../../components/consumer/productCart.vue")['default']
     'SharedButtonToggle': typeof import("../../components/shared/buttonToggle.vue")['default']
+    'StoreOrderCard': typeof import("../../components/store/orderCard.vue")['default']
     'StoreProductCard': typeof import("../../components/store/productCard.vue")['default']
     'UAccordion': typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']
     'UAlert': typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Alert.vue")['default']
@@ -100,6 +101,7 @@ interface _GlobalComponents {
     'LazyConsumerFloatingCart': LazyComponent<typeof import("../../components/consumer/floatingCart.vue")['default']>
     'LazyConsumerProductCart': LazyComponent<typeof import("../../components/consumer/productCart.vue")['default']>
     'LazySharedButtonToggle': LazyComponent<typeof import("../../components/shared/buttonToggle.vue")['default']>
+    'LazyStoreOrderCard': LazyComponent<typeof import("../../components/store/orderCard.vue")['default']>
     'LazyStoreProductCard': LazyComponent<typeof import("../../components/store/productCard.vue")['default']>
     'LazyUAccordion': LazyComponent<typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']>
     'LazyUAlert': LazyComponent<typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Alert.vue")['default']>

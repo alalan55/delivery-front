@@ -51,7 +51,14 @@
 
     <!-- Orders List -->
     <div class="space-y-4">
-      <div 
+      <StoreOrderCard
+        v-for="order in filteredOrders"
+        :key="order.id"
+        :order="order"
+        @show-order-details="showOrderDetails"
+        @update-status="updateStatus"
+      />
+      <!-- <div 
         v-for="order in filteredOrders" 
         :key="order.id"
         class="bg-white rounded-lg shadow-md border border-gray-200 p-6"
@@ -144,7 +151,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- Order Details Modal -->
