@@ -15,6 +15,7 @@ type LazyComponent<T> = (T & DefineComponent<HydrationStrategies, {}, {}, {}, {}
 
 interface _GlobalComponents {
       'AccountTypeToggle': typeof import("../../components/AccountTypeToggle.vue")['default']
+    'ConsumerFloatingCart': typeof import("../../components/consumer/floatingCart.vue")['default']
     'ConsumerProductCart': typeof import("../../components/consumer/productCart.vue")['default']
     'SharedButtonToggle': typeof import("../../components/shared/buttonToggle.vue")['default']
     'UAccordion': typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']
@@ -95,6 +96,7 @@ interface _GlobalComponents {
     'USlideovers': typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']
     'NuxtRouteAnnouncer': typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']
       'LazyAccountTypeToggle': LazyComponent<typeof import("../../components/AccountTypeToggle.vue")['default']>
+    'LazyConsumerFloatingCart': LazyComponent<typeof import("../../components/consumer/floatingCart.vue")['default']>
     'LazyConsumerProductCart': LazyComponent<typeof import("../../components/consumer/productCart.vue")['default']>
     'LazySharedButtonToggle': LazyComponent<typeof import("../../components/shared/buttonToggle.vue")['default']>
     'LazyUAccordion': LazyComponent<typeof import("../../node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']>

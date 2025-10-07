@@ -312,25 +312,7 @@
     </div>
 
     <!-- Cart Summary (Fixed Bottom) -->
-    <div
-      v-if="cartCount > 0"
-      class="fixed bottom-4 left-4 right-4 bg-orange-500 text-white rounded-lg shadow-lg p-4 z-50 max-w-md mx-auto"
-    >
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="font-medium">
-            {{ cartCount }} {{ cartCount === 1 ? "item" : "itens" }} no carrinho
-          </p>
-          <p class="text-orange-100">Total: R$ {{ cartTotal.toFixed(2) }}</p>
-        </div>
-        <NuxtLink
-          to="/cart"
-          class="bg-white text-orange-500 px-4 py-2 rounded-lg font-medium hover:bg-orange-50 transition-colors"
-        >
-          Ver Carrinho
-        </NuxtLink>
-      </div>
-    </div>
+    <ConsumerFloatingCart :cartCount="cartCount" :cartTotal="cartTotal" />
   </div>
 </template>
 
@@ -413,6 +395,22 @@ const hasActiveFilters = computed(() => {
   );
 });
 
+const filteredProducts = computed(() => {
+  let filtered = getProductsByCategory(selectedCategory.value);
+
+  if (searchQuery.value) {
+    filtered = filtered.filter(
+      (product) =>
+        product.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        product.description
+          .toLowerCase()
+          .includes(searchQuery.value.toLowerCase())
+    );
+  }
+
+  return filtered.filter((product) => product.available);
+});
+
 // Métodos
 const toggleCategory = (category) => {
   selectedCategory.value =
@@ -442,31 +440,6 @@ const applyFilters = () => {
   // Aqui você pode emitir um evento ou chamar a função que atualiza os produtos
 };
 
-// Watch para busca em tempo real
-watch(
-  [searchQuery, selectedCategory, selectedSort, priceRange, minRating],
-  () => {
-    applyFilters();
-  },
-  { debounce: 300, deep: true }
-);
-
-const filteredProducts = computed(() => {
-  let filtered = getProductsByCategory(selectedCategory.value);
-
-  if (searchQuery.value) {
-    filtered = filtered.filter(
-      (product) =>
-        product.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        product.description
-          .toLowerCase()
-          .includes(searchQuery.value.toLowerCase())
-    );
-  }
-
-  return filtered.filter((product) => product.available);
-});
-
 const quickAddToCart = (product) => {
   addToCart(product, 1);
   // Feedback visual opcional
@@ -477,6 +450,14 @@ const quickView = (product) => {
   // Implemente modal de visualização rápida
   console.log("Quick view:", product);
 };
+
+watch(
+  [searchQuery, selectedCategory, selectedSort, priceRange, minRating],
+  () => {
+    applyFilters();
+  },
+  { debounce: 300, deep: true }
+);
 
 useHead({
   title: "Cardápio",
