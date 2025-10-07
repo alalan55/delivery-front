@@ -28,18 +28,6 @@
         :alt="product.name"
         class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
       />
-
-      <!-- Overlay de ações na imagem -->
-      <div
-        class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100"
-      >
-        <button
-          @click.stop="emit('quick-view', product)"
-          class="bg-white bg-opacity-90 rounded-full p-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:bg-opacity-100 hover:scale-110"
-        >
-          <Icon name="heroicons:eye" class="w-5 h-5 text-gray-700" />
-        </button>
-      </div>
     </div>
 
     <!-- Conteúdo do card -->

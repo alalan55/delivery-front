@@ -305,7 +305,6 @@
 </template>
 
 <script setup>
-// Mantenha TODO o script original EXATAMENTE como está
 definePageMeta({
   layout: false,
 });
