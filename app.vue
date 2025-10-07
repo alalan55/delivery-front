@@ -1,15 +1,15 @@
+<!-- app.vue -->
 <template>
-  <div>
+  <UApp>
     <NuxtLayout>
-    
-        <NuxtPage />
-    
+      <NuxtPage />
     </NuxtLayout>
-  </div>
+  </UApp>
 </template>
 
-<script setup>
-// Configuração global da aplicação
+<script lang="ts" setup>
+import { useHead } from 'nuxt/app';
+
 useHead({
   titleTemplate: "%s - DeliveryApp",
   meta: [

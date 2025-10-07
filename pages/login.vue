@@ -299,7 +299,7 @@ const loginUser = async () => {
   error.value = "";
 
   try {
-    const success = login(form.email, form.password);
+    const success = login(formLogin.email, formLogin.password);
 
     if (success) {
       // Redirect será feito pelo watchEffect
@@ -338,7 +338,7 @@ const register = async () => {
       password: form.password,
     });
 
-  toast.add({
+    toast.add({
       title: "Sucesso",
       description: "Usuário registrado com sucesso! Faça login.",
       icon: "heroicons:check-circle",
