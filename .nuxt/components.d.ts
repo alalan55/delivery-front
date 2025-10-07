@@ -15,6 +15,7 @@ type LazyComponent<T> = (T & DefineComponent<HydrationStrategies, {}, {}, {}, {}
 
 
 export const AccountTypeToggle: typeof import("../components/AccountTypeToggle.vue")['default']
+export const ConsumerProductCart: typeof import("../components/consumer/productCart.vue")['default']
 export const SharedButtonToggle: typeof import("../components/shared/buttonToggle.vue")['default']
 export const UAccordion: typeof import("../node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']
 export const UAlert: typeof import("../node_modules/@nuxt/ui/dist/runtime/components/elements/Alert.vue")['default']
@@ -94,6 +95,7 @@ export const UModals: typeof import("../node_modules/nuxt/dist/app/components/se
 export const USlideovers: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
 export const NuxtRouteAnnouncer: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
 export const LazyAccountTypeToggle: LazyComponent<typeof import("../components/AccountTypeToggle.vue")['default']>
+export const LazyConsumerProductCart: LazyComponent<typeof import("../components/consumer/productCart.vue")['default']>
 export const LazySharedButtonToggle: LazyComponent<typeof import("../components/shared/buttonToggle.vue")['default']>
 export const LazyUAccordion: LazyComponent<typeof import("../node_modules/@nuxt/ui/dist/runtime/components/elements/Accordion.vue")['default']>
 export const LazyUAlert: LazyComponent<typeof import("../node_modules/@nuxt/ui/dist/runtime/components/elements/Alert.vue")['default']>
